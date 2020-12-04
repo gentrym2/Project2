@@ -26,9 +26,9 @@ hotel_rates = {
     "Hampton Inn": 209
 }
 
-city_temps_list = list(city_temps.keys())
-days = len(city_temps_list)
-perms = list(permutations(city_temps_list, days))
+
+days = len(list(city_temps.keys()))
+perms = list(permutations(city_temps.keys(), days))
 
 
 def cost_route(routes):
@@ -43,9 +43,8 @@ def cost_route(routes):
 cities = max(perms, key=lambda m: cost_route(m))
 
 
-hotel_list = list(hotel_rates.keys())
 HOTEL_BUDGET = 850
-combinations = list(combinations_with_replacement(hotel_list, days))
+combinations = list(combinations_with_replacement(hotel_rates.keys(), days))
 
 
 def cost_fun(t):
@@ -60,8 +59,8 @@ hotels = min(combinations, key=lambda t: HOTEL_BUDGET - cost_fun(t) if HOTEL_BUD
              else HOTEL_BUDGET)
 
 if __name__ == "__main__":
-    cities = list(city_temps.keys())
-    hotels = list(hotel_rates.keys())
+    # cities = list(city_temps.keys())
+    # hotels = list(hotel_rates.keys())
     # final statement containing the route and highest average temperature for that route
     print(f'Here is your best route: {cities} the average of the daily max temp is {cost_route(cities)} degrees F')
     # final statement containing the hotel names and summed pricing
